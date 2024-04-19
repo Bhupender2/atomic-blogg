@@ -27,7 +27,7 @@ function App() {
 
   const handleAddPost = useCallback(function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
-  }, []);
+  }, []);    // we are using useCallBack here are we are memoizing the whole function here (setter function from useState have stable identity so they are automatically memoized we can say ...here we are passing memoized function as a prop now)
 
   function handleClearPosts() {
     setPosts([]);
@@ -46,7 +46,7 @@ function App() {
       show: false,
       title: `Post archive in addition to ${posts.length} main posts`,
     };
-  }, [posts.length]);
+  }, [posts.length]);    // this is the useMemo hook are here we are basically memoizing the archivePost PROPS which will return the cache value unless and until the dependency change and when the dependency change it will recreate new value and as props are reacreated it will re render the components even its memoized :)
 
   return (
     <section>
